@@ -1,0 +1,130 @@
+Build a browser-based design editor (a simplified version of Canva/Figma, focused on business card design) using Next.js and Tailwind CSS (no TypeScript). The editor should allow users to add, move, resize, rotate, align, and export elements inside a fixed-size canvas.
+
+Requirements
+1. Canvas & Elements
+
+A fixed-size card canvas (e.g., 600×350px, locked aspect ratio).
+
+Users can add the following element types:
+
+Text blocks: editable text with controls for font, size, bold/italic/underline, and color.
+
+Shapes: rectangle, circle, and line.
+
+Images: uploaded from local device, auto-fit, draggable.
+
+SVG icons: selectable from a predefined set.
+
+Each element must support:
+
+Dragging (free positioning).
+
+Resizing (with handles).
+
+Rotating (with a rotation handle).
+
+Deletion (via Delete key or button).
+
+2. Element Management
+
+Layer panel (sidebar):
+
+Displays all elements in a stack.
+
+Drag-and-drop to reorder layers (bring forward/backward).
+
+Clicking an element in the sidebar selects it on the canvas.
+
+Properties panel:
+
+Dynamic controls depending on element type.
+
+Text → font, size, color.
+
+Image → replace, crop, opacity.
+
+Live updates reflected on canvas.
+
+3. Alignment & Snapping
+
+Alignment guidelines when moving elements (center lines, equal spacing).
+
+Snapping to canvas edges and center points.
+
+Keyboard controls:
+
+Arrow keys = move by 1px.
+
+Shift + arrow keys = move by 10px.
+
+4. Multi-Select & Grouping
+
+Multi-element selection (Ctrl + click).
+
+Group/ungroup elements.
+
+Groups can be moved, resized, and rotated together.
+
+5. Undo / Redo
+
+Full undo/redo history (at least 20 steps) with:
+
+Ctrl+Z / Ctrl+Y (Windows).
+
+Cmd+Z / Cmd+Shift+Z (Mac).
+
+6. Export
+
+Export final design as high-resolution PNG/JPEG/PDF.
+
+Ensure sharp text/SVG output.
+
+All handles, guidelines, and outlines must be excluded from exports.
+
+7. UI/UX
+
+Clean, professional UI (inspired by Figma).
+
+Sidebar panels for layers and properties.
+
+Minimal but modern look (Tailwind-based).
+
+Smooth animations for select/deselect actions.
+
+Dark/Light mode toggle.
+
+8. Performance
+
+Handle 50+ elements on canvas without noticeable lag.
+
+Optimize rendering with React.memo and efficient selectors.
+
+Virtualize the layer list if needed.
+
+Stretch Goals (Optional)
+
+Smart text fitting (auto-resizes text inside its box).
+
+Grid snapping with customizable grid size.
+
+Starter templates (at least 3 layouts to choose from).
+
+PWA support: installable, offline-ready, saves state to localStorage.
+
+Export/import design as JSON for collaboration.
+
+Deliverables
+
+A working Next.js app styled with Tailwind CSS (no TypeScript).
+
+State management via Redux Toolkit.
+
+Uses mock data only (no backend required).
+
+README.md explaining:
+
+Features implemented.
+
+Setup instructions.
+
+Known limitations.
