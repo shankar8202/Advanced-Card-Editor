@@ -3,14 +3,21 @@ import { Toolbar } from "@/components/editor/Toolbar";
 import { LeftSidebar } from "@/components/editor/LeftSidebar";
 import { PropertiesPanel } from "@/components/editor/PropertiesPanel";
 import { IconLibraryModal } from "@/components/editor/IconLibraryModal";
+import { useRef } from "react";
 
 export default function Editor() {
+  
+  const canvasRef = useRef<HTMLDivElement>(null);
+
   return (
     <div className="h-screen flex flex-col bg-editor-light" data-testid="design-editor">
-      <Toolbar />
+   
+      <Toolbar canvasRef={canvasRef} />
+      
       <div className="flex-1 flex overflow-hidden">
         <LeftSidebar />
-        <Canvas />
+       
+        <Canvas ref={canvasRef} />
         <PropertiesPanel />
       </div>
       <IconLibraryModal />

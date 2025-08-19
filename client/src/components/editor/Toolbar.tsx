@@ -1,50 +1,55 @@
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "@/store/store";
-import { setZoomLevel, undo, redo } from "@/store/editorSlice";
-import { Button } from "@/components/ui/button";
-import { exportToPNG } from "@/lib/export";
-import { Plus, FolderOpen, Save, Minus, Undo, Redo, Download } from "lucide-react";
+"use client"
 
-export function Toolbar() {
-  const dispatch = useDispatch();
-  const { zoomLevel } = useSelector((state: RootState) => state.editor);
+import type React from "react"
+
+import { useSelector, useDispatch } from "react-redux"
+import type { RootState } from "@/store/store"
+import { setZoomLevel, undo, redo } from "@/store/editorSlice"
+import { Button } from "@/components/ui/button"
+
+import { Plus, Minus, Undo, Redo, Download } from "lucide-react"
+import { exportToPNG } from "@/lib/export"
+import { useRef } from "react"
+
+interface ToolbarProps {
+  canvasRef?: React.RefObject<HTMLDivElement>,
+}
+
+export function Toolbar({ canvasRef }: ToolbarProps) {
+  const dispatch = useDispatch()
+  const { zoomLevel } = useSelector((state: RootState) => state.editor)
 
   const handleZoomIn = () => {
-    dispatch(setZoomLevel(zoomLevel + 25));
-  };
+    dispatch(setZoomLevel(zoomLevel + 25))
+  }
 
   const handleZoomOut = () => {
-    dispatch(setZoomLevel(zoomLevel - 25));
-  };
+    dispatch(setZoomLevel(zoomLevel - 25))
+  }
 
   const handleExport = async () => {
+  
     try {
-      await exportToPNG();
+      const canvasElement = canvasRef?.current
+      if (!canvasElement) {
+        console.error("Canvas element not found")
+        return
+      }
+      await exportToPNG(canvasElement)
     } catch (error) {
-      console.error("Export failed:", error);
+      console.error("Export failed:", error)
     }
-  };
+  }
 
   return (
-    <div className="bg-white border-b border-editor-border px-4 py-2 flex items-center justify-between shadow-sm" data-testid="top-toolbar">
+    <div
+      className="bg-white border-b border-editor-border px-4 py-2 flex items-center justify-between shadow-sm"
+      data-testid="top-toolbar"
+    >
       <div className="flex items-center space-x-4">
-        <h1 className="text-lg font-semibold text-gray-800">Business Card Designer</h1>
-        <div className="flex items-center space-x-2">
-          <Button size="sm" className="text-xs" data-testid="button-new">
-            <Plus className="w-3 h-3 mr-1" />
-            New
-          </Button>
-          <Button variant="outline" size="sm" className="text-xs" data-testid="button-open">
-            <FolderOpen className="w-3 h-3 mr-1" />
-            Open
-          </Button>
-          <Button variant="outline" size="sm" className="text-xs" data-testid="button-save">
-            <Save className="w-3 h-3 mr-1" />
-            Save
-          </Button>
-        </div>
+        <h1 className="text-lg font-semibold text-gray-800">Welcome to Card Designer</h1>
       </div>
-      
+
       <div className="flex items-center space-x-4">
         <div className="flex items-center space-x-2">
           <Button
@@ -69,7 +74,7 @@ export function Toolbar() {
             <Plus className="w-3 h-3" />
           </Button>
         </div>
-        
+
         <div className="flex items-center space-x-1">
           <Button
             variant="ghost"
@@ -90,7 +95,7 @@ export function Toolbar() {
             <Redo className="w-3 h-3" />
           </Button>
         </div>
-        
+
         <Button
           className="text-xs bg-green-600 hover:bg-green-700"
           size="sm"
@@ -102,5 +107,5 @@ export function Toolbar() {
         </Button>
       </div>
     </div>
-  );
+  )
 }

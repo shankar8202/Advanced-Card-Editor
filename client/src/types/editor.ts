@@ -8,6 +8,7 @@ export interface CanvasElement {
   zIndex: number;
   
   // Text properties
+  rotation?: number;
   text?: string;
   fontSize?: number;
   fontFamily?: string;
