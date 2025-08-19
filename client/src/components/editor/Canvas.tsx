@@ -285,14 +285,14 @@ export const Canvas = forwardRef<HTMLDivElement>((props, ref) => {
     return (
       <>
    
-        <div className="absolute inset-0 border-2 border-dashed border-blue-500 pointer-events-none -m-0.5 z-[999]" />
+        <div className="absolute  inset-0 border-2 border-dashed border-blue-500 pointer-events-none -m-0.5 z-[999]" />
 
    
         {handles.map((handle) => (
           <div
             key={handle.id}
             data-resize-handle={handle.id}
-            className="absolute w-2 h-2 bg-blue-500 border-2 border-white shadow-sm z-[10000]"
+            className="absolute w-2 h-2 bg-red-500 border-2 border-white shadow-sm z-[10000]"
             style={{ left: handle.x, top: handle.y, cursor: handle.cursor }}
             onMouseDown={(e) => handleElementMouseDown(e, element.id)}
           />

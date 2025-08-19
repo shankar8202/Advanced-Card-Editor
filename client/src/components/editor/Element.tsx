@@ -38,7 +38,7 @@ export function Element({ element, isSelected, onMouseDown }: ElementProps) {
 
     return (
       <>
-        {handles.map((handle, index) => (
+        {/* {handles.map((handle, index) => (
           <div
             key={index}
             className={cn(
@@ -47,8 +47,8 @@ export function Element({ element, isSelected, onMouseDown }: ElementProps) {
               handle.className
             )}
           />
-        ))}
-        <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-editor-accent border border-white rounded-full cursor-grab" />
+        ))} */}
+        {/* <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-editor-accent border border-white rounded-full cursor-grab" /> */}
       </>
     );
   };
